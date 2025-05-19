@@ -1,0 +1,10 @@
+/appsettings.json
+appsettings.Development.json
+/.vs/
+/bin/
+/.vs/Snipster/v17/.futdcache.v2
+/.vs/ProjectEvaluation/snipster.metadata.v7.bin
+/.vs/ProjectEvaluation/snipster.projects.v7.bin
+/obj/
+/appsettings.Development.json
+/Properties/launchSettings.json

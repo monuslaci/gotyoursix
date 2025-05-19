@@ -1,0 +1,80 @@
+﻿@page "/validate-registration"
+@using gotyoursix.Data;
+@using gotyoursix.Services;
+@using gotyoursix.Components
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Components.Forms
+@using static gotyoursix.Data.DBContext;
+@inject MongoDbService _mongoDbService
+@inject NavigationManager Navigation
+
+
+<div class="reset-container">
+
+    @if (isProcessing)
+    {
+        <div class="login-container">
+            <h1>Registration is being validated, please do not refresh page!</h1>
+        </div>
+    }
+    @if (isSuccess && !isProcessing)
+    {
+        <div class="login-container">
+            <h1>Registration is confirmed, you are now redirected to the login page..</h1>
+        </div>
+    }
+
+    @if (!isSuccess && !isProcessing)
+    {
+        <div class="login-container">
+            <h1>Token is not valid, confirmation is not successful!</h1>
+    
+                <EditForm Model="resetEmailModel" OnValidSubmit="HandleResetEmail">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    <div class="form-group">
+                        <label for="email">Enter your registered email to resend the validation email</label>
+                        <InputText id="email" class="form-control input-short" @bind-Value="resetEmailModel.Email" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send Validation Email</button>
+
+                    <div class="back-to-login">
+                        <a href="/login">Back to Login</a>
+                    </div>
+                </EditForm>
+        
+        </div>
+    }
+
+
+
+</div>
+
+<Modal @ref="spinnerModal">
+
+</Modal>
+
+
+@code {
+
+
+}
+<style>
+
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+
+    .error {
+        color: red;
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>

@@ -1,0 +1,38 @@
+﻿@using gotyoursix.Data;
+@using gotyoursix.Services;
+@using gotyoursix.Components
+@inject IJSRuntime JSRuntime
+@using Microsoft.AspNetCore.Components.Authorization
+
+@using static gotyoursix.Data.DBContext;
+
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthStateProvider
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is null || !user.Identity.IsAuthenticated)
+        {
+            Navigation.NavigateTo("/login", true);
+        }
+    }
+}
+
+
+
+
+
+
+
+@code {
+
+
+}
+
+<style>
+
+</style>
