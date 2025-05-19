@@ -8,3 +8,4 @@ appsettings.Development.json
 /obj/
 /appsettings.Development.json
 /Properties/launchSettings.json
+/.env
